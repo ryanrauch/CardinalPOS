@@ -6,33 +6,34 @@
         <Grid BackgroundColor="{StaticResource CardinalBackgroundColor}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="35"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="2*"/>
-                <RowDefinition Height="35"/>
+                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
             <Button Grid.Column="0"
                     Grid.Row="0"
                     Text="&#xf102;"
                     Style="{StaticResource FontAwesomeSolidButtonStyle}"
                     Command="SelectedTabUpCommand"/>
-            <Button Grid.Column="1"
+            <Button Grid.Column="2"
                     Grid.Row="0"
                     Text="&#xf067;"
                     Style="{StaticResource FontAwesomeSolidButtonStyle}"
                     Command="{Binding AddTabCommand}"/>
 
             <Label Grid.Column="0"
-                   Grid.ColumnSpan="2"
+                   Grid.ColumnSpan="3"
                    Grid.Row="1"
                    Text="{Binding TabsSelectedItem.LastName}"
                    Style="{StaticResource SelectedTabLabelStyle}"
                    FontSize="{StaticResource H2}"/>
             <Label Grid.Column="0"
-                   Grid.ColumnSpan="2"
+                   Grid.ColumnSpan="3"
                    Grid.Row="2"
                    Text="{Binding TabsSelectedItem.FirstName}"
                    Style="{StaticResource SelectedTabLabelStyle}"
@@ -43,7 +44,7 @@
                     Text="&#xf543;"
                     Style="{StaticResource FontAwesomeSolidButtonStyle}"
                     Command="{Binding TabPrintCommand}"/>
-            <Button Grid.Column="1"
+            <Button Grid.Column="2"
                     Grid.Row="3"
                     Text="&#xf00d;"
                     Style="{StaticResource FontAwesomeSolidButtonStyle}"

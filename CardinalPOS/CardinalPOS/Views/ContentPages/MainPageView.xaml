@@ -3,6 +3,7 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:local="clr-namespace:CardinalPOS.Views.ContentPages"
                         xmlns:contentViews="clr-namespace:CardinalPOS.Views.ContentViews"
+                        BackgroundColor="{StaticResource CardinalBackgroundColor}"
                         x:Class="CardinalPOS.Views.ContentPages.MainPageView">
     <ContentPage.Content>
         <Grid Style="{StaticResource GridContentPageStyle}">
@@ -14,21 +15,28 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="35"/>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="110"/>
             </Grid.RowDefinitions>
 
             <!-- Top-left -->
             <Grid Grid.Column="0"
                   Grid.Row="0"
-                  BackgroundColor="{StaticResource CardinalBackgroundColor}">
-                <Label Text="{Binding ItemsSelectedItem.Description}"
-                       TextColor="{StaticResource CardinalRedColor}"/>
+                  BackgroundColor="{StaticResource CardinalRedColor}">
+                <Label Text="Cardinal"
+                       Margin="20,0,0,0"
+                       FontFamily="{StaticResource HighlandGothicLightFLF}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start"
+                       FontSize="{StaticResource H1}"
+                       TextColor="{StaticResource CardinalBackgroundColor}"/>
             </Grid>
             
+            <!-- left-items -->
             <contentViews:ItemsView Grid.Column="0"
                                     Grid.Row="1"
-                                    Grid.RowSpan="3"/>
+                                    Grid.RowSpan="3"
+                                    Padding="10,10,10,10"/>
 
             <!-- Header above quick-items -->
             <Grid Grid.Column="1"
@@ -37,10 +45,12 @@
                 <Label Text="{Binding ItemsSelectedItem.Description}"
                        TextColor="{StaticResource CardinalBackgroundLightColor}"/>
             </Grid>
-
+            
+            <!-- center-items -->
             <contentViews:QuickItemsView Grid.Column="1"
                                          Grid.Row="1"
-                                         Grid.RowSpan="3"/>
+                                         Grid.RowSpan="3"
+                                         Padding="10,10,10,10"/>
 
             <!--Clock-->
             <Grid Grid.Column="2"

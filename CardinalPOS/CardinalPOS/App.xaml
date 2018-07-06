@@ -6,14 +6,21 @@
 	<Application.Resources>
         <ResourceDictionary>
 
-            <!-- Color Schemed Colors -->
-            <Color x:Key="TransparentColor">#FFFFFF00</Color>
+            <!-- Dark/Black Background -->
+            <!--<Color x:Key="CardinalRedColor">#BA514B</Color>
+            <Color x:Key="CardinalRedDarkColor">#BA514B</Color>
+            <Color x:Key="CardinalRedLightColor">#7D4140</Color>
+            <Color x:Key="CardinalBackgroundColor">#404040</Color>
+            <Color x:Key="CardinalBackgroundLightColor">#343434</Color>-->
+
+            <!-- Lighter Grey/Tan Background -->
             <Color x:Key="CardinalRedColor">#CC0000</Color>
             <Color x:Key="CardinalRedDarkColor">#930000</Color>
             <Color x:Key="CardinalRedLightColor">#FF4F30</Color>
             <Color x:Key="CardinalBackgroundColor">#E1E2E1</Color>
             <Color x:Key="CardinalBackgroundLightColor">#F5F5F6</Color>
 
+            <Color x:Key="TransparentColor">#FFFFFF00</Color>
 
             <!-- Fonts -->
             <helpers:OnCustomPlatform x:Key="HighlandGothicLightFLF"
@@ -97,7 +104,7 @@
                 <Setter Property="LineBreakMode"
                         Value="TailTruncation"/>
                 <Setter Property="FontSize"
-                        Value="{StaticResource H5}"/>
+                        Value="{StaticResource H4}"/>
                 <Setter Property="VerticalTextAlignment"
                         Value="Center"/>
                 <Setter Property="HorizontalTextAlignment"
@@ -117,7 +124,7 @@
                 <Setter Property="HorizontalTextAlignment"
                         Value="Center"/>
                 <Setter Property="TextColor"
-                        Value="{StaticResource CardinalRedDarkColor}"/>
+                        Value="{StaticResource CardinalRedColor}"/>
             </Style>
             <Style x:Key="CardinalItemLabelStyleAlt"
                    TargetType="{x:Type Label}"
@@ -132,9 +139,9 @@
                 <Setter Property="FontFamily"
                         Value="{StaticResource FontAwesomeSolid}"/>
                 <Setter Property="FontSize"
-                        Value="{StaticResource H4}"/>
+                        Value="{StaticResource H3}"/>
                 <Setter Property="BackgroundColor"
-                        Value="{StaticResource CardinalRedDarkColor}" />
+                        Value="{StaticResource CardinalRedColor}" />
                 <Setter Property="TextColor"
                         Value="{StaticResource CardinalBackgroundColor}"/>
             </Style>
@@ -146,7 +153,7 @@
                 <Setter Property="FontSize"
                         Value="{StaticResource H4}"/>
                 <Setter Property="BackgroundColor"
-                        Value="{StaticResource CardinalRedDarkColor}" />
+                        Value="{StaticResource CardinalRedColor}" />
                 <Setter Property="TextColor"
                         Value="{StaticResource CardinalBackgroundColor}"/>
             </Style>
@@ -163,7 +170,7 @@
             <!--ContentPageGrid-Style-->
             <Style x:Key="GridContentPageStyle"
                    TargetType="{x:Type Grid}">
-                <Setter Property="Margin"
+                <Setter Property="Padding"
                         Value="10,10,10,10"/>
                 <Setter Property="RowSpacing"
                         Value="0"/>

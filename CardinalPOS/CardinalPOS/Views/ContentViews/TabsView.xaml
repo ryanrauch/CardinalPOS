@@ -47,7 +47,7 @@
     <ListView ItemsSource="{Binding Tabs}"
               HasUnevenRows="False"
               SelectedItem="{Binding TabsSelectedItem}"
-              RowHeight="25">
+              RowHeight="35">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>

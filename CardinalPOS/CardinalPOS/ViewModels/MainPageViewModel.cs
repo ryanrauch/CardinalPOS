@@ -287,6 +287,19 @@ namespace CardinalPOS.ViewModels
                 QuickItems.Add(new ItemModel(i));
             }
 
+            for(int i = 1; i <= 10; ++i)
+            {
+                var item = new Item()
+                {
+                    ItemId = Guid.NewGuid(),
+                    Description = "Drink Number " + i.ToString(),
+                    Price = 1.25M + (Decimal)i,
+                    ItemGroupId = itemslist.ElementAt(i % 4).ItemGroupId,
+                    ItemGroup = itemslist.ElementAt(i % 4).ItemGroup
+                };
+                Items.Add(new ItemModel(item));
+            }
+
             _tabsHubService.OnAddTab += tabsHubService_OnAddTab;
             await _tabsHubService.InitializeHub();
         }
