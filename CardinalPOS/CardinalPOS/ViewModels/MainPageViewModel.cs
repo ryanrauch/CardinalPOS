@@ -23,29 +23,32 @@ namespace CardinalPOS.ViewModels
         {
             _tabsHubService = tabsHubService;
             _requestService = requestService;
+
+            Tabs = new ObservableCollection<TabModel>();
+            Items = new ObservableCollection<ItemModel>();
         }
 
-        private ObservableCollection<GroupedTabModel> _groupedTabs { get; set; }
-        public ObservableCollection<GroupedTabModel> GroupedTabs
-        {
-            get { return _groupedTabs; }
-            set
-            {
-                _groupedTabs = value;
-                RaisePropertyChanged(() => GroupedTabs);
-            }
-        }
-
-        //private ObservableCollection<TabModel> _tabs { get; set; }
-        //public ObservableCollection<TabModel> Tabs
+        //private ObservableCollection<GroupedTabModel> _groupedTabs { get; set; }
+        //public ObservableCollection<GroupedTabModel> GroupedTabs
         //{
-        //    get { return _tabs; }
+        //    get { return _groupedTabs; }
         //    set
         //    {
-        //        _tabs = value;
-        //        RaisePropertyChanged(() => Tabs);
+        //        _groupedTabs = value;
+        //        RaisePropertyChanged(() => GroupedTabs);
         //    }
         //}
+
+        private ObservableCollection<TabModel> _tabs { get; set; }
+        public ObservableCollection<TabModel> Tabs
+        {
+            get { return _tabs; }
+            set
+            {
+                _tabs = value;
+                RaisePropertyChanged(() => Tabs);
+            }
+        }
 
         private TabModel _tabsSelectedItem { get; set; }
         public TabModel TabsSelectedItem
@@ -82,24 +85,44 @@ namespace CardinalPOS.ViewModels
 
         private void tabsHubService_OnAddTab(object sender, Services.AddTabEventArgs e)
         {
-            string shortName = e.EventTab.LastName.Substring(0, 1);
-            var g = GroupedTabs.FirstOrDefault(t => t.ShortName.Equals(shortName));
-            if (g != null)
+            if(Tabs.Any(t => t.TabId.Equals(e.EventTab.TabId)))
             {
-                g.Add(new TabModel(e.EventTab));
+                return;
             }
-            else
+            bool ins = false;
+            for(int i = Tabs.Count; i > 0; --i)
             {
-                GroupedTabModel gtm = new GroupedTabModel()
+                if(String.Compare(Tabs[i - 1].LastName,
+                                  e.EventTab.LastName,
+                                  ignoreCase: true) < 0)
                 {
-                    ShortName = shortName,
-                    LongName = shortName
-                };
-                gtm.Add(new TabModel(e.EventTab));
-                GroupedTabs.Add(gtm);
-                var sorted = GroupedTabs.OrderBy(gt => gt.LongName);
-                GroupedTabs = new ObservableCollection<GroupedTabModel>(sorted);
+                    Tabs.Insert(i, new TabModel(e.EventTab));
+                    ins = true;
+                    break;
+                }
             }
+            if (!ins)
+            {
+                Tabs.Add(new TabModel(e.EventTab));
+            }
+            //string shortName = e.EventTab.LastName.Substring(0, 1);
+            //var g = GroupedTabs.FirstOrDefault(t => t.ShortName.Equals(shortName));
+            //if (g != null)
+            //{
+            //    g.Add(new TabModel(e.EventTab));
+            //}
+            //else
+            //{
+            //    GroupedTabModel gtm = new GroupedTabModel()
+            //    {
+            //        ShortName = shortName,
+            //        LongName = shortName
+            //    };
+            //    gtm.Add(new TabModel(e.EventTab));
+            //    GroupedTabs.Add(gtm);
+            //    var sorted = GroupedTabs.OrderBy(gt => gt.LongName);
+            //    GroupedTabs = new ObservableCollection<GroupedTabModel>(sorted);
+            //}
         }
 
         public ICommand AddTabCommand => new Command(async () => await AddTabCommandFunction());
@@ -113,6 +136,7 @@ namespace CardinalPOS.ViewModels
                 TimestampOpened = DateTime.Now
             };
             await _requestService.PostAsync("api/Tabs/", t);
+            TabsSelectedItem = null;
         }
 
         public ICommand RemoveTabCommand => new Command(async () => await RemoveTabCommandFunction());
@@ -120,20 +144,29 @@ namespace CardinalPOS.ViewModels
         {
             if(TabsSelectedItem != null)
             {
-                Guid gid = TabsSelectedItem.TabId;
-                string shortName = string.Empty;
-                if (TabsSelectedItem.LastName.Length >= 1)
+                var tsi = Tabs.FirstOrDefault(t => t.TabId.Equals(TabsSelectedItem.TabId));
+                if (tsi != null)
                 {
-                    shortName = TabsSelectedItem.LastName.Substring(0, 1);
-                    var del = await _requestService.DeleteAsync<Tab>("api/Tabs/" + gid.ToString());
-                    var gt = GroupedTabs.FirstOrDefault(g => g.ShortName.Equals(shortName));
-                    if (gt != null)
+                    if(await _requestService.DeleteAsync<bool>("api/Tabs/" + tsi.TabId.ToString()))
                     {
-                        var tm = gt.Remove(TabsSelectedItem);
+                        Tabs.RemoveAt(Tabs.IndexOf(tsi));
                     }
+
                 }
-                TabsSelectedItem = null;
+                //Guid gid = TabsSelectedItem.TabId;
+                //string shortName = string.Empty;
+                //if (TabsSelectedItem.LastName.Length >= 1)
+                //{
+                //    shortName = TabsSelectedItem.LastName.Substring(0, 1);
+                //    var del = await _requestService.DeleteAsync<Tab>("api/Tabs/" + gid.ToString());
+                //    var gt = GroupedTabs.FirstOrDefault(g => g.ShortName.Equals(shortName));
+                //    if (gt != null)
+                //    {
+                //        var tm = gt.Remove(TabsSelectedItem);
+                //    }
+                //}
             }
+            TabsSelectedItem = null;
         }
 
         public override async Task OnAppearingAsync()
@@ -152,29 +185,35 @@ namespace CardinalPOS.ViewModels
             /////////////////////////
             /////////////////////////
             var tablist = await _requestService.GetAsync<List<Tab>>("api/Tabs/");
-            GroupedTabs = new ObservableCollection<GroupedTabModel>();
-            for (char c = 'A'; c <= 'Z'; c++)
+            Tabs.Clear();
+            foreach(var tm in tablist.OrderBy(t=>t.LastName))
             {
-                string shortName = c.ToString();
-                GroupedTabModel gtm = new GroupedTabModel()
-                {
-                    ShortName = shortName,
-                    LongName = shortName
-                };
-                bool found = false;
-                foreach (var tm in tablist.Where(t => t.LastName.StartsWith(shortName)))
-                {
-                    gtm.Add(new TabModel(tm));
-                    found = true;
-                }
-                if (found)
-                {
-                    GroupedTabs.Add(gtm);
-                }
+                Tabs.Add(new TabModel(tm));
             }
 
+            //GroupedTabs = new ObservableCollection<GroupedTabModel>();
+            //for (char c = 'A'; c <= 'Z'; c++)
+            //{
+            //    string shortName = c.ToString();
+            //    GroupedTabModel gtm = new GroupedTabModel()
+            //    {
+            //        ShortName = shortName,
+            //        LongName = shortName
+            //    };
+            //    bool found = false;
+            //    foreach (var tm in tablist.Where(t => t.LastName.StartsWith(shortName)))
+            //    {
+            //        gtm.Add(new TabModel(tm));
+            //        found = true;
+            //    }
+            //    if (found)
+            //    {
+            //        GroupedTabs.Add(gtm);
+            //    }
+            //}
+
             var itemslist = await _requestService.GetAsync<List<Item>>("api/Items/");
-            Items = new ObservableCollection<ItemModel>();
+            Items.Clear();
             foreach (var i in itemslist)
             {
                 Items.Add(new ItemModel(i));
