@@ -8,12 +8,22 @@
               IsGroupingEnabled="True"
               GroupDisplayBinding="{Binding LongName}"
               GroupShortNameBinding="{Binding ShortName}"
-              RowHeight="25">
+              RowHeight="35">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <Grid>
-                        <Label Text="{Binding DisplayName}"
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="15"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" 
+                               Text="{Binding DisplayName}"
+                               LineBreakMode="TailTruncation"
+                               HorizontalTextAlignment="Start"/>
+                        <Label Grid.Row="1" 
+                               Text="{Binding MinutesOld}"
+                               FontSize="8"
                                LineBreakMode="TailTruncation"
                                HorizontalTextAlignment="Start"/>
                     </Grid>

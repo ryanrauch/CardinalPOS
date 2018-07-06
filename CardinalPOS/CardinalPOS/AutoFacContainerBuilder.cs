@@ -5,8 +5,7 @@ using System.Text;
 using CardinalPOS.ViewModels;
 using CardinalPOS.Services;
 using CardinalPOS.Services.Interfaces;
-using CardinalPOS.Repositories;
-using CardinalPOS.Repositories.Interfaces;
+
 
 namespace CardinalPOS
 {
@@ -21,9 +20,8 @@ namespace CardinalPOS
 
             containerBuilder.RegisterType<UnAuthenticatedRequestService>().As<IRequestService>().SingleInstance();
 
-            //containerBuilder.RegisterType<TabRepository>().As<ITabRepository>().SingleInstance();
 
-            //containerBuilder.RegisterType<TabsHubService>().As<ITabsHubService>().SingleInstance();
+            containerBuilder.RegisterType<TabsHubService>().As<ITabsHubService>().SingleInstance();
 
             return containerBuilder.Build();
         }

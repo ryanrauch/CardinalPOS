@@ -3,6 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CardinalPOS.App">
 	<Application.Resources>
-    
-	</Application.Resources>
+        <ResourceDictionary>
+
+            <!-- Color Schemed Colors -->
+            <Color x:Key="CardinalRedColor">#CC0000</Color>
+            <Color x:Key="CardinalRedDarkColor">#930000</Color>
+            <Color x:Key="CardinalRedLightColor">#FF4F30</Color>
+            <Color x:Key="CardinalBackgroundColor">#E1E2E1</Color>
+            <Color x:Key="CardinalBackgroundLightColor">#F5F5F6</Color>
+
+            <!--ContentPageGrid-Style-->
+            <Style x:Key="GridContentPageStyle"
+                   TargetType="{x:Type Grid}">
+                <Setter Property="Margin"
+                        Value="10,10,10,10"/>
+                <Setter Property="RowSpacing"
+                        Value="0"/>
+                <Setter Property="ColumnSpacing"
+                        Value="0"/>
+            </Style>
+
+            <!-- Grid - set default RowSpacing/ColumnSpacing to zero-->
+            <Style TargetType="{x:Type Grid}">
+                <Setter Property="RowSpacing"
+                        Value="0"/>
+                <Setter Property="ColumnSpacing"
+                        Value="0"/>
+                <Setter Property="Padding"
+                        Value="0"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>

@@ -5,7 +5,7 @@ namespace CardinalPOS.Services.Interfaces
 {
     public interface ITabsHubService
     {
-        event EventHandler OnReceived;
+        event EventHandler<AddTabEventArgs> OnAddTab;
         Task InitializeHub();
     }
 }

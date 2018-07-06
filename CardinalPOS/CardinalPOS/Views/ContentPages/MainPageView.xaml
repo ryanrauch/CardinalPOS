@@ -5,7 +5,7 @@
                         xmlns:contentViews="clr-namespace:CardinalPOS.Views.ContentViews"
                         x:Class="CardinalPOS.Views.ContentPages.MainPageView">
     <ContentPage.Content>
-        <Grid>
+        <Grid Style="{StaticResource GridContentPageStyle}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -21,12 +21,18 @@
                                    Grid.Row="0"
                                    Grid.RowSpan="2"
                                    BindingContext="{Binding .}"/>
-            <Label Grid.Column="1"
-                   Grid.Row="0"
-                   Text="{Binding ItemsSelectedItem.Description}"/>
-            <Label Grid.Column="1"
-                   Grid.Row="1"
-                   Text="{Binding TabsSelectedItem.FirstName}"/>
+            <StackLayout Grid.Column="1" 
+                         Grid.Row="0"
+                         Orientation="Vertical">
+                <Button Text="AddTab"
+                        Command="{Binding AddTabCommand}"/>
+                <Button Text="RemoveTab"
+                        Command="{Binding RemoveTabCommand}"/>
+                <Label Text="selected tab:"/>
+                <Label Text="{Binding TabsSelectedItem.DisplayName}"/>
+                <Label Text="selected item:"/>
+                <Label Text="{Binding ItemsSelectedItem.Description}"/>
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </local:MainPageViewBase>
