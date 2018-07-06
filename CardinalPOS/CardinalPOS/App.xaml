@@ -1,16 +1,164 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:CardinalPOS.Helpers"
              x:Class="CardinalPOS.App">
 	<Application.Resources>
         <ResourceDictionary>
 
             <!-- Color Schemed Colors -->
+            <Color x:Key="TransparentColor">#FFFFFF00</Color>
             <Color x:Key="CardinalRedColor">#CC0000</Color>
             <Color x:Key="CardinalRedDarkColor">#930000</Color>
             <Color x:Key="CardinalRedLightColor">#FF4F30</Color>
             <Color x:Key="CardinalBackgroundColor">#E1E2E1</Color>
             <Color x:Key="CardinalBackgroundLightColor">#F5F5F6</Color>
+
+
+            <!-- Fonts -->
+            <helpers:OnCustomPlatform x:Key="HighlandGothicLightFLF"
+                        x:TypeArguments="x:String"
+                        iOS="highlandgothiclightflf"
+                        Android="highlandgothiclightflf.ttf#highlandgothiclightflf"
+                        UWP="Assets/highlandgothiclightflf.ttf#highlandgothiclightflf"/>
+
+            <helpers:OnCustomPlatform x:Key="FontAwesomeRegular"
+                        x:TypeArguments="x:String"
+                        iOS="FontAwesome5FreeRegular"
+                        Android="fa-regular-400.ttf#Font Awesome 5 Free Regular" 
+                        UWP="Assets/fa-regular-400.ttf#Font Awesome 5 Free Regular"/>
+
+            <helpers:OnCustomPlatform x:Key="FontAwesomeSolid"
+                        x:TypeArguments="x:String"
+                        iOS="FontAwesome5FreeSolid"
+                        Android="fa-solid-900.ttf#Font Awesome 5 Free Solid" 
+                        UWP="Assets/fa-solid-900.ttf#Font Awesome 5 Free Solid"/>
+            
+            <!-- Font Sizes [H1-H9] -->
+            <helpers:OnCustomPlatform x:Key="H9"
+                        x:TypeArguments="x:Double"
+                        iOS="9"
+                        Android="10"
+                        UWP="10"/>
+            <helpers:OnCustomPlatform x:Key="H8"
+                        x:TypeArguments="x:Double"
+                        iOS="11"
+                        Android="12"
+                        UWP="12"/>
+            <helpers:OnCustomPlatform x:Key="H7"
+                        x:TypeArguments="x:Double"
+                        iOS="12"
+                        Android="14"
+                        UWP="14"/>
+            <helpers:OnCustomPlatform x:Key="H6"
+                        x:TypeArguments="x:Double"
+                        iOS="14"
+                        Android="16"
+                        UWP="16"/>
+            <helpers:OnCustomPlatform x:Key="H5"
+                        x:TypeArguments="x:Double"
+                        iOS="16"
+                        Android="18"
+                        UWP="18"/>
+            <helpers:OnCustomPlatform x:Key="H4"
+                        x:TypeArguments="x:Double"
+                        iOS="18"
+                        Android="20"
+                        UWP="20"/>
+            <helpers:OnCustomPlatform x:Key="H3"
+                        x:TypeArguments="x:Double"
+                        iOS="20"
+                        Android="24"
+                        UWP="24"/>
+            <helpers:OnCustomPlatform x:Key="H2"
+                      x:TypeArguments="x:Double"
+                      iOS="24"
+                      Android="32"
+                      UWP="32"/>
+            <helpers:OnCustomPlatform x:Key="H1"
+                        x:TypeArguments="x:Double"
+                        iOS="32"
+                        Android="48"
+                        UWP="48"/>
+
+            <!-- Label Styles -->
+            <Style x:Key="SelectedTabLabelStyle"
+                   TargetType="{x:Type Label}">
+                <Setter Property="LineBreakMode"
+                        Value="TailTruncation"/>
+                <Setter Property="TextColor"
+                        Value="{StaticResource CardinalRedDarkColor}"/>
+            </Style>
+
+            <Style x:Key="CardinalTabLabelStyle"
+                   TargetType="{x:Type Label}">
+                <Setter Property="Margin"
+                        Value="10,0,0,0"/>
+                <Setter Property="LineBreakMode"
+                        Value="TailTruncation"/>
+                <Setter Property="FontSize"
+                        Value="{StaticResource H5}"/>
+                <Setter Property="VerticalTextAlignment"
+                        Value="Center"/>
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Start"/>
+                <Setter Property="TextColor"
+                        Value="{StaticResource CardinalRedDarkColor}"/>
+            </Style>
+            
+            <Style x:Key="CardinalItemLabelStyle"
+                   TargetType="{x:Type Label}">
+                <Setter Property="LineBreakMode"
+                        Value="WordWrap"/>
+                <Setter Property="FontSize"
+                        Value="{StaticResource H4}"/>
+                <Setter Property="VerticalTextAlignment"
+                        Value="Start"/>
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center"/>
+                <Setter Property="TextColor"
+                        Value="{StaticResource CardinalRedDarkColor}"/>
+            </Style>
+            <Style x:Key="CardinalItemLabelStyleAlt"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource CardinalItemLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource CardinalRedColor}"/>
+            </Style>
+            
+            <!-- Button Styles -->
+            <Style x:Key="FontAwesomeSolidButtonStyle"
+                   TargetType="{x:Type Button}">
+                <Setter Property="FontFamily"
+                        Value="{StaticResource FontAwesomeSolid}"/>
+                <Setter Property="FontSize"
+                        Value="{StaticResource H4}"/>
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource CardinalRedDarkColor}" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource CardinalBackgroundColor}"/>
+            </Style>
+
+            <Style x:Key="CardinalItemButtonStyle"
+                   TargetType="{x:Type Button}">
+                <!--<Setter Property="FontFamily"
+                        Value="{StaticResource FontAwesomeSolid}"/>-->
+                <Setter Property="FontSize"
+                        Value="{StaticResource H4}"/>
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource CardinalRedDarkColor}" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource CardinalBackgroundColor}"/>
+            </Style>
+
+            <Style x:Key="CardinalItemButtonStyleAlt"
+                   TargetType="{x:Type Button}"
+                   BasedOn="{StaticResource CardinalItemButtonStyle}">
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource CardinalRedColor}" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource CardinalBackgroundLightColor}"/>
+            </Style>
 
             <!--ContentPageGrid-Style-->
             <Style x:Key="GridContentPageStyle"

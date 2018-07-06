@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CardinalPOS.Views.ContentViews.SelectedTabView">
+  <ContentView.Content>
+        <Grid BackgroundColor="{StaticResource CardinalBackgroundColor}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Column="0"
+                    Grid.Row="0"
+                    Text="&#xf102;"
+                    Style="{StaticResource FontAwesomeSolidButtonStyle}"
+                    Command="SelectedTabUpCommand"/>
+            <Button Grid.Column="1"
+                    Grid.Row="0"
+                    Text="&#xf067;"
+                    Style="{StaticResource FontAwesomeSolidButtonStyle}"
+                    Command="{Binding AddTabCommand}"/>
+
+            <Label Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Grid.Row="1"
+                   Text="{Binding TabsSelectedItem.LastName}"
+                   Style="{StaticResource SelectedTabLabelStyle}"
+                   FontSize="{StaticResource H2}"/>
+            <Label Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Grid.Row="2"
+                   Text="{Binding TabsSelectedItem.FirstName}"
+                   Style="{StaticResource SelectedTabLabelStyle}"
+                   FontSize="{StaticResource H4}"/>
+
+            <Button Grid.Column="0"
+                    Grid.Row="3"
+                    Text="&#xf543;"
+                    Style="{StaticResource FontAwesomeSolidButtonStyle}"
+                    Command="{Binding TabPrintCommand}"/>
+            <Button Grid.Column="1"
+                    Grid.Row="3"
+                    Text="&#xf00d;"
+                    Style="{StaticResource FontAwesomeSolidButtonStyle}"
+                    Command="{Binding TabDeselectCommand}"/>
+        </Grid>
+  </ContentView.Content>
+</ContentView>

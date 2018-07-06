@@ -26,7 +26,32 @@ namespace CardinalPOS.ViewModels
 
             Tabs = new ObservableCollection<TabModel>();
             Items = new ObservableCollection<ItemModel>();
+            QuickItems = new ObservableCollection<ItemModel>();
+            Clock = DateTime.Now;
+            Device.StartTimer(TimeSpan.FromMilliseconds(100), OnClockTick);
         }
+
+        private DateTime _clock { get; set; }
+        public DateTime Clock
+        {
+            get { return _clock; }
+            set
+            {
+                _clock = value;
+                RaisePropertyChanged(() => Clock);
+                RaisePropertyChanged(() => ClockHourMinute);
+                RaisePropertyChanged(() => ClockDate);
+            }
+        }
+
+        private bool OnClockTick()
+        {
+            Clock = DateTime.Now;
+            return true;
+        }
+
+        public string ClockHourMinute => Clock.ToString("hh:mm:ss tt");
+        public string ClockDate => Clock.ToString("MM/dd/yyyy");
 
         //private ObservableCollection<GroupedTabModel> _groupedTabs { get; set; }
         //public ObservableCollection<GroupedTabModel> GroupedTabs
@@ -58,6 +83,17 @@ namespace CardinalPOS.ViewModels
             {
                 _tabsSelectedItem = value;
                 RaisePropertyChanged(() => TabsSelectedItem);
+            }
+        }
+
+        private ObservableCollection<ItemModel> _quickItems { get; set; }
+        public ObservableCollection<ItemModel> QuickItems
+        {
+            get { return _quickItems; }
+            set
+            {
+                _quickItems = value;
+                RaisePropertyChanged(() => QuickItems);
             }
         }
 
@@ -124,6 +160,17 @@ namespace CardinalPOS.ViewModels
             //    GroupedTabs = new ObservableCollection<GroupedTabModel>(sorted);
             //}
         }
+        public ICommand TabDeselectCommand => new Command(TabDeselectCommandFunction);
+        private void TabDeselectCommandFunction()
+        {
+            TabsSelectedItem = null;
+        }
+
+        public ICommand TabPrintCommand => new Command(async () => await TabPrintCommandFunction());
+        private async Task TabPrintCommandFunction()
+        {
+            await Task.Delay(100);
+        }
 
         public ICommand AddTabCommand => new Command(async () => await AddTabCommandFunction());
         private async Task AddTabCommandFunction()
@@ -167,6 +214,21 @@ namespace CardinalPOS.ViewModels
                 //}
             }
             TabsSelectedItem = null;
+        }
+
+
+        public ICommand ItemButtonCommand => new Command<ItemModel>(async (im) => await ItemButtonCommandFunction(im));
+        private async Task ItemButtonCommandFunction(ItemModel item)
+        {
+            ItemsSelectedItem = item;
+            await Task.Delay(100);
+        }
+
+        public ICommand QuickItemButtonCommand => new Command<ItemModel>(async (im) => await QuickItemButtonCommandFunction(im));
+        private async Task QuickItemButtonCommandFunction(ItemModel item)
+        {
+            ItemsSelectedItem = item;
+            await Task.Delay(100);
         }
 
         public override async Task OnAppearingAsync()
@@ -217,6 +279,12 @@ namespace CardinalPOS.ViewModels
             foreach (var i in itemslist)
             {
                 Items.Add(new ItemModel(i));
+            }
+
+            QuickItems.Clear();
+            foreach (var i in itemslist)
+            {
+                QuickItems.Add(new ItemModel(i));
             }
 
             _tabsHubService.OnAddTab += tabsHubService_OnAddTab;

@@ -1,8 +1,34 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CardinalPOS.Controls"
+             x:Name="ItemsContentView"
+             BackgroundColor="{StaticResource CardinalBackgroundLightColor}"
              x:Class="CardinalPOS.Views.ContentViews.ItemsView">
-    <ListView ItemsSource="{Binding Items}"
+    <controls:WrapLayout ItemsSource="{Binding Items}"
+                         ColumnSpacing="10"
+                         RowSpacing="10">
+        <controls:WrapLayout.ItemTemplate>
+            <DataTemplate>
+                <Grid HeightRequest="100"
+                          WidthRequest="100">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" 
+                            Text="{Binding Description}"
+                            Style="{StaticResource CardinalItemButtonStyleAlt}"
+                            Command="{Binding Source={x:Reference ItemsContentView}, Path=BindingContext.ItemButtonCommand}"
+                            CommandParameter="{Binding .}"/>
+                    <Label Grid.Row="1" 
+                           Style="{StaticResource CardinalItemLabelStyleAlt}"
+                           Text="{Binding Price}"/>
+                </Grid>
+            </DataTemplate>
+        </controls:WrapLayout.ItemTemplate>
+    </controls:WrapLayout>
+    <!--<ListView ItemsSource="{Binding Items}"
               HasUnevenRows="False"
               SelectedItem="{Binding ItemsSelectedItem}"
               RowHeight="25">
@@ -16,5 +42,5 @@
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
-    </ListView>
+    </ListView>-->
 </ContentView>

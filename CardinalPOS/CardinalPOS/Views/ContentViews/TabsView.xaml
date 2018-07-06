@@ -51,8 +51,9 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <Grid>
-                        <Label Text="{Binding DisplayName}"/>
+                    <Grid BackgroundColor="{StaticResource CardinalBackgroundLightColor}">
+                        <Label Style="{StaticResource CardinalTabLabelStyle}" 
+                               Text="{Binding DisplayName}"/>
                     </Grid>
                 </ViewCell>
             </DataTemplate>

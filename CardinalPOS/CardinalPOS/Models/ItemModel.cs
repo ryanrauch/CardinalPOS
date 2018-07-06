@@ -16,6 +16,6 @@ namespace CardinalPOS.Models
         }
 
         public string Description => _item.Description;
-        public string Price => _item.Price.ToString();
+        public string Price => string.Format("${0}", _item.Price.ToString());
     }
 }

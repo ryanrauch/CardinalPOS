@@ -97,8 +97,13 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
-    <None Include="Info.plist" />
+    <None Include="Info.plist">
+      <SubType>Designer</SubType>
+    </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <BundleResource Include="Resources\fa-regular-400.ttf" />
+    <BundleResource Include="Resources\fa-solid-900.ttf" />
+    <BundleResource Include="Resources\highlandgothiclightflf.ttf" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
