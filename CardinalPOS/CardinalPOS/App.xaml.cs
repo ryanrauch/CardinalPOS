@@ -1,3 +1,5 @@
+using Autofac;
+using CardinalPOS.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -5,14 +7,16 @@ using Xamarin.Forms.Xaml;
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace CardinalPOS
 {
-	public partial class App : Application
+    public partial class App : Application
 	{
-		public App ()
+        public static IContainer Container { get; set; }
+
+        public App ()
 		{
 			InitializeComponent();
-
-			MainPage = new MainPage();
-		}
+            Container = AutoFacContainerBuilder.CreateContainer();
+            MainPage = new InitialView();
+        }
 
 		protected override void OnStart ()
 		{
