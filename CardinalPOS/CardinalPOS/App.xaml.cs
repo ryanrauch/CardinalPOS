@@ -1,5 +1,6 @@
 using Autofac;
 using CardinalPOS.Views;
+using CardinalPOS.Views.ContentPages;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,7 +16,8 @@ namespace CardinalPOS
 		{
 			InitializeComponent();
             Container = AutoFacContainerBuilder.CreateContainer();
-            MainPage = new InitialView();
+            MainPage = new MainPageView();
+            //MainPage = new InitialView();
         }
 
 		protected override void OnStart ()

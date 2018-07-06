@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:MainPageViewBase xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:local="clr-namespace:CardinalPOS.Views.ContentPages"
+                        xmlns:contentViews="clr-namespace:CardinalPOS.Views.ContentViews"
+                        x:Class="CardinalPOS.Views.ContentPages.MainPageView">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <contentViews:ItemsView Grid.Column="0"
+                                    Grid.Row="0"/>
+            <contentViews:TabsView Grid.Column="2"
+                                   Grid.Row="0"
+                                   Grid.RowSpan="2"
+                                   BindingContext="{Binding .}"/>
+            <Label Grid.Column="1"
+                   Grid.Row="0"
+                   Text="{Binding ItemsSelectedItem.Description}"/>
+            <Label Grid.Column="1"
+                   Grid.Row="1"
+                   Text="{Binding TabsSelectedItem.FirstName}"/>
+        </Grid>
+    </ContentPage.Content>
+</local:MainPageViewBase>

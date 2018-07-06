@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CardinalPOS.Views.ContentViews.ItemsView">
+    <ListView ItemsSource="{Binding Items}"
+              HasUnevenRows="False"
+              SelectedItem="{Binding ItemsSelectedItem}"
+              RowHeight="25">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding Description}"/>
+                        <Label Text="{Binding Price}"/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentView>

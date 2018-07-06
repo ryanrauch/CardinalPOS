@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CardinalPOS.Views.ContentViews.TabsView">
+    <ListView ItemsSource="{Binding GroupedTabs}"
+              HasUnevenRows="False"
+              SelectedItem="{Binding TabsSelectedItem}"
+              IsGroupingEnabled="True"
+              GroupDisplayBinding="{Binding LongName}"
+              GroupShortNameBinding="{Binding ShortName}"
+              RowHeight="25">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid>
+                        <Label Text="{Binding DisplayName}"
+                               LineBreakMode="TailTruncation"
+                               HorizontalTextAlignment="Start"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+        <ListView.GroupHeaderTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid>
+                        <Label Text="{Binding LongName}"
+                               HorizontalTextAlignment="Start"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.GroupHeaderTemplate>
+    </ListView>
+    <!--<ListView ItemsSource="{Binding Tabs}"
+              HasUnevenRows="False"
+              SelectedItem="{Binding TabsSelectedItem}"
+              RowHeight="25">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding DisplayName}"/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>-->
+</ContentView>

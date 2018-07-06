@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using Autofac;
 using System.Text;
 using CardinalPOS.ViewModels;
+using CardinalPOS.Services;
+using CardinalPOS.Services.Interfaces;
+using CardinalPOS.Repositories;
+using CardinalPOS.Repositories.Interfaces;
 
 namespace CardinalPOS
 {
@@ -11,7 +15,15 @@ namespace CardinalPOS
         public static IContainer CreateContainer()
         {
             var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterType<InitialViewModel>().SingleInstance();
+            //containerBuilder.RegisterType<InitialViewModel>().SingleInstance();
+            containerBuilder.RegisterType<MainPageViewModel>().SingleInstance();
+            //containerBuilder.RegisterType<TabsViewModel>().SingleInstance();
+
+            containerBuilder.RegisterType<UnAuthenticatedRequestService>().As<IRequestService>().SingleInstance();
+
+            //containerBuilder.RegisterType<TabRepository>().As<ITabRepository>().SingleInstance();
+
+            //containerBuilder.RegisterType<TabsHubService>().As<ITabsHubService>().SingleInstance();
 
             return containerBuilder.Build();
         }
