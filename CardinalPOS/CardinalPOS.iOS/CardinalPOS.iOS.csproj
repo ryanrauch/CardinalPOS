@@ -105,6 +105,7 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DependencyService\NFCService.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist">
@@ -174,16 +175,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\..\git\xamarin-nfc\src\Plugin.Nfc.Abstractions\Plugin.Nfc.Abstractions.csproj">
-      <Project>{61901cad-721c-470d-9117-1ad41e9040d1}</Project>
-      <Name>Plugin.Nfc.Abstractions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\..\..\..\git\xamarin-nfc\src\Plugin.Nfc.iOS\Plugin.Nfc.iOS.csproj">
-      <Project>{0e5469e5-ec4e-4607-9f7a-5996b9edea2e}</Project>
-      <Name>Plugin.Nfc.iOS</Name>
-      <IsAppExtension>false</IsAppExtension>
-      <IsWatchApp>false</IsWatchApp>
-    </ProjectReference>
     <ProjectReference Include="..\CardinalPOS\CardinalPOS.csproj">
       <Project>{138B4855-BBDB-4C2E-A77D-E99136DDD7BE}</Project>
       <Name>CardinalPOS</Name>

@@ -5,7 +5,7 @@ using System.Text;
 using CardinalPOS.ViewModels;
 using CardinalPOS.Services;
 using CardinalPOS.Services.Interfaces;
-
+using Xamarin.Forms;
 
 namespace CardinalPOS
 {
@@ -20,6 +20,8 @@ namespace CardinalPOS
 
             containerBuilder.RegisterType<UnAuthenticatedRequestService>().As<IRequestService>().SingleInstance();
             containerBuilder.RegisterType<SinglePageNavigationService>().As<INavigationService>().SingleInstance();
+
+            containerBuilder.RegisterInstance(DependencyService.Get<INFCService>()).AsImplementedInterfaces().SingleInstance();
 
             //containerBuilder.RegisterType<TabsHubService>().As<ITabsHubService>().SingleInstance();
 

@@ -11,8 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\..\git\xamarin-nfc\src\Plugin.Nfc.Abstractions\Plugin.Nfc.Abstractions.csproj" />
-    <ProjectReference Include="..\..\..\..\..\..\..\git\xamarin-nfc\src\Plugin.Nfc\Plugin.Nfc.csproj" />
     <ProjectReference Include="..\..\CardinalPOSLibrary\CardinalPOSLibrary.csproj" />
   </ItemGroup>
 

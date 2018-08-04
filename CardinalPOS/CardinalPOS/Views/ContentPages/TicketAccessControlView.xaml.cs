@@ -1,7 +1,5 @@
 ﻿using CardinalPOS.ViewModels;
 using CardinalPOS.Views.Base;
-
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace CardinalPOS.Views.ContentPages
