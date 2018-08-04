@@ -1,4 +1,4 @@
-﻿using CardinalPOS.Services.Interfaces;
+﻿/*using CardinalPOS.Services.Interfaces;
 using CardinalPOSLibrary.Models;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
@@ -10,15 +10,6 @@ using Xamarin.Forms.PlatformConfiguration;
 
 namespace CardinalPOS.Services
 {
-    public class AddTabEventArgs : EventArgs
-    {
-        public Tab EventTab { get; set; }
-        public AddTabEventArgs(Tab t)
-        {
-            EventTab = t;
-        }
-    }
-
     public class TabsHubService : ITabsHubService
     {
         private HubConnection _connection { get; set; }
@@ -79,3 +70,4 @@ namespace CardinalPOS.Services
         //}
     }
 }
+*/

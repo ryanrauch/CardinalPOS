@@ -45,9 +45,8 @@
         </ListView.GroupHeaderTemplate>
     </ListView>-->
     <ListView ItemsSource="{Binding Tabs}"
-              HasUnevenRows="False"
-              SelectedItem="{Binding TabsSelectedItem}"
-              RowHeight="35">
+              Style="{StaticResource CardinalTabListViewStyle}"
+              SelectedItem="{Binding TabsSelectedItem}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>

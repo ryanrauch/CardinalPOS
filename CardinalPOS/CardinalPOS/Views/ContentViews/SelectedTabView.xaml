@@ -19,7 +19,7 @@
                     Grid.Row="0"
                     Text="&#xf102;"
                     Style="{StaticResource FontAwesomeSolidButtonStyle}"
-                    Command="SelectedTabUpCommand"/>
+                    Command="{Binding SelectedTabUpCommand}"/>
             <Button Grid.Column="2"
                     Grid.Row="0"
                     Text="&#xf067;"

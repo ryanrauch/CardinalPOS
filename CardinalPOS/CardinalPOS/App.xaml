@@ -7,18 +7,18 @@
         <ResourceDictionary>
 
             <!-- Dark/Black Background -->
-            <!--<Color x:Key="CardinalRedColor">#BA514B</Color>
+            <Color x:Key="CardinalRedColor">#BA514B</Color>
             <Color x:Key="CardinalRedDarkColor">#BA514B</Color>
             <Color x:Key="CardinalRedLightColor">#7D4140</Color>
             <Color x:Key="CardinalBackgroundColor">#404040</Color>
-            <Color x:Key="CardinalBackgroundLightColor">#343434</Color>-->
+            <Color x:Key="CardinalBackgroundLightColor">#343434</Color>
 
             <!-- Lighter Grey/Tan Background -->
-            <Color x:Key="CardinalRedColor">#CC0000</Color>
+            <!--<Color x:Key="CardinalRedColor">#CC0000</Color>
             <Color x:Key="CardinalRedDarkColor">#930000</Color>
             <Color x:Key="CardinalRedLightColor">#FF4F30</Color>
             <Color x:Key="CardinalBackgroundColor">#E1E2E1</Color>
-            <Color x:Key="CardinalBackgroundLightColor">#F5F5F6</Color>
+            <Color x:Key="CardinalBackgroundLightColor">#F5F5F6</Color>-->
 
             <Color x:Key="TransparentColor">#FFFFFF00</Color>
 
@@ -88,6 +88,23 @@
                         Android="48"
                         UWP="48"/>
 
+            <Style x:Key="CardinalTabListViewStyle"
+                   TargetType="{x:Type ListView}">
+                <Setter Property="HasUnevenRows"
+                        Value="False"/>
+                <Setter Property="RowHeight">
+                    <Setter.Value>
+                        <OnIdiom x:TypeArguments="x:Int32"
+                                 Tablet="35"
+                                 Phone="25"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BackgroundColor" 
+                        Value="{StaticResource CardinalBackgroundLightColor}"/>
+                <Setter Property="SeparatorColor" 
+                                Value="{StaticResource CardinalBackgroundColor}"/>
+            </Style>
+            
             <!-- Label Styles -->
             <Style x:Key="SelectedTabLabelStyle"
                    TargetType="{x:Type Label}">
@@ -103,8 +120,13 @@
                         Value="10,0,0,0"/>
                 <Setter Property="LineBreakMode"
                         Value="TailTruncation"/>
-                <Setter Property="FontSize"
-                        Value="{StaticResource H4}"/>
+                <Setter Property="FontSize">
+                    <Setter.Value>
+                        <OnIdiom x:TypeArguments="x:Double"
+                                 Tablet="{StaticResource H4}"
+                                 Phone="{StaticResource H6}"/>
+                    </Setter.Value>
+                </Setter>
                 <Setter Property="VerticalTextAlignment"
                         Value="Center"/>
                 <Setter Property="HorizontalTextAlignment"
@@ -117,8 +139,13 @@
                    TargetType="{x:Type Label}">
                 <Setter Property="LineBreakMode"
                         Value="WordWrap"/>
-                <Setter Property="FontSize"
-                        Value="{StaticResource H4}"/>
+                <Setter Property="FontSize">
+                    <Setter.Value>
+                        <OnIdiom x:TypeArguments="x:Double"
+                                 Tablet="{StaticResource H4}"
+                                 Phone="{StaticResource H7}"/>
+                    </Setter.Value>
+                </Setter>
                 <Setter Property="VerticalTextAlignment"
                         Value="Start"/>
                 <Setter Property="HorizontalTextAlignment"
@@ -150,8 +177,15 @@
                    TargetType="{x:Type Button}">
                 <!--<Setter Property="FontFamily"
                         Value="{StaticResource FontAwesomeSolid}"/>-->
-                <Setter Property="FontSize"
-                        Value="{StaticResource H4}"/>
+                <!--<Setter Property="FontSize"
+                        Value="{StaticResource H4}"/>-->
+                <Setter Property="FontSize">
+                    <Setter.Value>
+                        <OnIdiom x:TypeArguments="x:Double"
+                                 Tablet="{StaticResource H4}"
+                                 Phone="{StaticResource H7}"/>
+                    </Setter.Value>
+                </Setter>
                 <Setter Property="BackgroundColor"
                         Value="{StaticResource CardinalRedColor}" />
                 <Setter Property="TextColor"
@@ -170,8 +204,15 @@
             <!--ContentPageGrid-Style-->
             <Style x:Key="GridContentPageStyle"
                    TargetType="{x:Type Grid}">
-                <Setter Property="Padding"
-                        Value="10,10,10,10"/>
+                <!--<Setter Property="Padding"
+                        Value="10,10,10,10"/>-->
+                <Setter Property="Padding">
+                    <Setter.Value>
+                        <OnIdiom x:TypeArguments="Thickness"
+                                 Tablet="10,10,10,10"
+                                 Phone="0,20,0,0"/>
+                    </Setter.Value>
+                </Setter>
                 <Setter Property="RowSpacing"
                         Value="0"/>
                 <Setter Property="ColumnSpacing"
@@ -186,6 +227,11 @@
                         Value="0"/>
                 <Setter Property="Padding"
                         Value="0"/>
+            </Style>
+
+            <Style TargetType="{x:Type ContentPage}">
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource CardinalBackgroundColor}"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

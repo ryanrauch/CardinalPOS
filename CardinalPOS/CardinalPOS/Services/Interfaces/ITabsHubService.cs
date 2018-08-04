@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CardinalPOSLibrary.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace CardinalPOS.Services.Interfaces
@@ -7,5 +8,14 @@ namespace CardinalPOS.Services.Interfaces
     {
         event EventHandler<AddTabEventArgs> OnAddTab;
         Task InitializeHub();
+    }
+
+    public class AddTabEventArgs : EventArgs
+    {
+        public Tab EventTab { get; set; }
+        public AddTabEventArgs(Tab t)
+        {
+            EventTab = t;
+        }
     }
 }

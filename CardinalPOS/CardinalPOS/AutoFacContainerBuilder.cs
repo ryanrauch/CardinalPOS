@@ -14,14 +14,14 @@ namespace CardinalPOS
         public static IContainer CreateContainer()
         {
             var containerBuilder = new ContainerBuilder();
-            //containerBuilder.RegisterType<InitialViewModel>().SingleInstance();
+            containerBuilder.RegisterType<InitialViewModel>().SingleInstance();
             containerBuilder.RegisterType<MainPageViewModel>().SingleInstance();
-            //containerBuilder.RegisterType<TabsViewModel>().SingleInstance();
+            containerBuilder.RegisterType<TicketAccessControlViewModel>().SingleInstance();
 
             containerBuilder.RegisterType<UnAuthenticatedRequestService>().As<IRequestService>().SingleInstance();
+            containerBuilder.RegisterType<SinglePageNavigationService>().As<INavigationService>().SingleInstance();
 
-
-            containerBuilder.RegisterType<TabsHubService>().As<ITabsHubService>().SingleInstance();
+            //containerBuilder.RegisterType<TabsHubService>().As<ITabsHubService>().SingleInstance();
 
             return containerBuilder.Build();
         }

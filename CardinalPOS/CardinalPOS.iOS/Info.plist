@@ -32,6 +32,8 @@
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
 	<string>CardinalPOS</string>
+  <key>NFCReaderUsageDescription</key>
+  <string>Used for Ticket Processing.</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
   <key>UIAppFonts</key>

@@ -16,8 +16,7 @@ namespace CardinalPOS
 		{
 			InitializeComponent();
             Container = AutoFacContainerBuilder.CreateContainer();
-            MainPage = new MainPageView();
-            //MainPage = new InitialView();
+            MainPage = new InitialView();
         }
 
 		protected override void OnStart ()

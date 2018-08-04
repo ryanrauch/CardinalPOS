@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<local:MainPageViewBase xmlns="http://xamarin.com/schemas/2014/forms"
-                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                        xmlns:local="clr-namespace:CardinalPOS.Views.ContentPages"
-                        xmlns:contentViews="clr-namespace:CardinalPOS.Views.ContentViews"
-                        BackgroundColor="{StaticResource CardinalBackgroundColor}"
-                        x:Class="CardinalPOS.Views.ContentPages.MainPageView">
+<local:MainPagePhoneViewBase xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CardinalPOS.Views.ContentPages"
+             xmlns:contentViews="clr-namespace:CardinalPOS.Views.ContentViews"
+             BackgroundColor="{StaticResource CardinalBackgroundColor}"
+             x:Class="CardinalPOS.Views.ContentPages.MainPagePhoneView">
     <ContentPage.Content>
         <Grid Style="{StaticResource GridContentPageStyle}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="200"/>
+                <!--<ColumnDefinition Width="*"/>-->
+                <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="75"/>
+                <RowDefinition Height="45"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="110"/>
@@ -24,35 +24,36 @@
                   Grid.Row="0"
                   BackgroundColor="{StaticResource CardinalRedColor}">
                 <Label Text="Cardinal"
-                       Margin="20,0,0,0"
+                       Margin="0,0,0,0"
                        FontFamily="{StaticResource HighlandGothicLightFLF}"
                        VerticalTextAlignment="Center"
                        HorizontalTextAlignment="Start"
                        FontSize="{StaticResource H1}"
                        TextColor="{StaticResource CardinalBackgroundColor}"/>
             </Grid>
-            
-            <contentViews:ItemsView Grid.Column="0"
+
+            <!-- left-items -->
+            <contentViews:ItemsPhoneView Grid.Column="0"
                                     Grid.Row="1"
                                     Grid.RowSpan="3"
                                     Padding="10,10,10,10"/>
 
             <!-- Header above quick-items -->
-            <Grid Grid.Column="1"
+            <!--<Grid Grid.Column="1"
                   Grid.Row="0"
                   BackgroundColor="{StaticResource CardinalRedColor}">
                 <Label Text="{Binding ItemsSelectedItem.Description}"
                        TextColor="{StaticResource CardinalBackgroundLightColor}"/>
-            </Grid>
-            
+            </Grid>-->
+
             <!-- center-items -->
-            <contentViews:QuickItemsView Grid.Column="1"
+            <!--<contentViews:QuickItemsView Grid.Column="1"
                                          Grid.Row="1"
                                          Grid.RowSpan="3"
-                                         Padding="10,10,10,10"/>
+                                         Padding="10,10,10,10"/>-->
 
             <!--Clock-->
-            <Grid Grid.Column="2"
+            <Grid Grid.Column="1"
                   Grid.Row="0"
                   BackgroundColor="{StaticResource CardinalRedDarkColor}">
                 <Grid.RowDefinitions>
@@ -61,24 +62,24 @@
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0"
                        Text="{Binding ClockHourMinute}"
-                       FontSize="{StaticResource H2}"
+                       FontSize="{StaticResource H3}"
                        TextColor="{StaticResource CardinalBackgroundColor}"
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="Center"/>
                 <Label Grid.Row="1"
                        Text="{Binding ClockDate}"
-                       FontSize="{StaticResource H4}"
+                       FontSize="{StaticResource H5}"
                        TextColor="{StaticResource CardinalBackgroundColor}"
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="Center"/>
             </Grid>
 
-            <contentViews:TabsView Grid.Column="2"
+            <contentViews:TabsView Grid.Column="1"
                                    Grid.Row="1"
                                    Grid.RowSpan="1"
                                    BindingContext="{Binding .}"/>
 
-            <contentViews:SelectedTabView Grid.Column="2"
+            <contentViews:SelectedTabView Grid.Column="1"
                                           Grid.Row="2"
                                           Grid.RowSpan="2"
                                           BindingContext="{Binding .}"/>
@@ -86,4 +87,4 @@
 
         </Grid>
     </ContentPage.Content>
-</local:MainPageViewBase>
+</local:MainPagePhoneViewBase>

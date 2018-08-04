@@ -15,13 +15,13 @@ namespace CardinalPOS.ViewModels
     public class MainPageViewModel : ViewModelBase
     {
         private readonly IRequestService _requestService;
-        private readonly ITabsHubService _tabsHubService;
+        //private readonly ITabsHubService _tabsHubService;
 
         public MainPageViewModel(
-            ITabsHubService tabsHubService,
+            //ITabsHubService tabsHubService,
             IRequestService requestService)
         {
-            _tabsHubService = tabsHubService;
+            //_tabsHubService = tabsHubService;
             _requestService = requestService;
 
             Tabs = new ObservableCollection<TabModel>();
@@ -119,47 +119,48 @@ namespace CardinalPOS.ViewModels
         }
         
 
-        private void tabsHubService_OnAddTab(object sender, Services.AddTabEventArgs e)
-        {
-            if(Tabs.Any(t => t.TabId.Equals(e.EventTab.TabId)))
-            {
-                return;
-            }
-            bool ins = false;
-            for(int i = Tabs.Count; i > 0; --i)
-            {
-                if(String.Compare(Tabs[i - 1].LastName,
-                                  e.EventTab.LastName,
-                                  ignoreCase: true) < 0)
-                {
-                    Tabs.Insert(i, new TabModel(e.EventTab));
-                    ins = true;
-                    break;
-                }
-            }
-            if (!ins)
-            {
-                Tabs.Add(new TabModel(e.EventTab));
-            }
-            //string shortName = e.EventTab.LastName.Substring(0, 1);
-            //var g = GroupedTabs.FirstOrDefault(t => t.ShortName.Equals(shortName));
-            //if (g != null)
-            //{
-            //    g.Add(new TabModel(e.EventTab));
-            //}
-            //else
-            //{
-            //    GroupedTabModel gtm = new GroupedTabModel()
-            //    {
-            //        ShortName = shortName,
-            //        LongName = shortName
-            //    };
-            //    gtm.Add(new TabModel(e.EventTab));
-            //    GroupedTabs.Add(gtm);
-            //    var sorted = GroupedTabs.OrderBy(gt => gt.LongName);
-            //    GroupedTabs = new ObservableCollection<GroupedTabModel>(sorted);
-            //}
-        }
+        //private void tabsHubService_OnAddTab(object sender, Services.AddTabEventArgs e)
+        //{
+        //    if(Tabs.Any(t => t.TabId.Equals(e.EventTab.TabId)))
+        //    {
+        //        return;
+        //    }
+        //    bool ins = false;
+        //    for(int i = Tabs.Count; i > 0; --i)
+        //    {
+        //        if(String.Compare(Tabs[i - 1].LastName,
+        //                          e.EventTab.LastName,
+        //                          ignoreCase: true) < 0)
+        //        {
+        //            Tabs.Insert(i, new TabModel(e.EventTab));
+        //            ins = true;
+        //            break;
+        //        }
+        //    }
+        //    if (!ins)
+        //    {
+        //        Tabs.Add(new TabModel(e.EventTab));
+        //    }
+        //    //string shortName = e.EventTab.LastName.Substring(0, 1);
+        //    //var g = GroupedTabs.FirstOrDefault(t => t.ShortName.Equals(shortName));
+        //    //if (g != null)
+        //    //{
+        //    //    g.Add(new TabModel(e.EventTab));
+        //    //}
+        //    //else
+        //    //{
+        //    //    GroupedTabModel gtm = new GroupedTabModel()
+        //    //    {
+        //    //        ShortName = shortName,
+        //    //        LongName = shortName
+        //    //    };
+        //    //    gtm.Add(new TabModel(e.EventTab));
+        //    //    GroupedTabs.Add(gtm);
+        //    //    var sorted = GroupedTabs.OrderBy(gt => gt.LongName);
+        //    //    GroupedTabs = new ObservableCollection<GroupedTabModel>(sorted);
+        //    //}
+        //}
+
         public ICommand TabDeselectCommand => new Command(TabDeselectCommandFunction);
         private void TabDeselectCommandFunction()
         {
@@ -300,8 +301,8 @@ namespace CardinalPOS.ViewModels
                 Items.Add(new ItemModel(item));
             }
 
-            _tabsHubService.OnAddTab += tabsHubService_OnAddTab;
-            await _tabsHubService.InitializeHub();
+            //_tabsHubService.OnAddTab += tabsHubService_OnAddTab;
+            //await _tabsHubService.InitializeHub();
         }
     }
 }
